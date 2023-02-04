@@ -6,19 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Example of request parameter bean to query an object
- *
  * @author: frank.huang
- * @date: 2021-11-01 20:39
+ * @date: 2023-02-04 19:59
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QueryUserRequest {
+public class CreateTemplateValueConfigRequest {
+    private Byte type;
 
-    private String name;
-    private String address;
-    private Integer age;
+    private String expression;
 
+    private String url;
 }

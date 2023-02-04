@@ -35,7 +35,7 @@ public interface MessageConfigMapper {
         "deleted, create_time, ",
         "update_time)",
         "values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, ",
-        "#{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{templateValueConfigId,jdbcType=VARCHAR}, ",
+        "#{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{templateValueConfigId,jdbcType=BIGINT}, ",
         "#{deleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, ",
         "#{updateTime,jdbcType=TIMESTAMP})"
     })
@@ -50,7 +50,7 @@ public interface MessageConfigMapper {
         @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="template_value_config_id", property="templateValueConfigId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="template_value_config_id", property="templateValueConfigId", jdbcType=JdbcType.BIGINT),
         @Result(column="deleted", property="deleted", jdbcType=JdbcType.BIT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
@@ -68,7 +68,7 @@ public interface MessageConfigMapper {
         @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="template_value_config_id", property="templateValueConfigId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="template_value_config_id", property="templateValueConfigId", jdbcType=JdbcType.BIGINT),
         @Result(column="deleted", property="deleted", jdbcType=JdbcType.BIT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
@@ -89,7 +89,7 @@ public interface MessageConfigMapper {
         "set code = #{code,jdbcType=VARCHAR},",
           "type = #{type,jdbcType=VARCHAR},",
           "name = #{name,jdbcType=VARCHAR},",
-          "template_value_config_id = #{templateValueConfigId,jdbcType=VARCHAR},",
+          "template_value_config_id = #{templateValueConfigId,jdbcType=BIGINT},",
           "deleted = #{deleted,jdbcType=BIT},",
           "create_time = #{createTime,jdbcType=TIMESTAMP},",
           "update_time = #{updateTime,jdbcType=TIMESTAMP}",

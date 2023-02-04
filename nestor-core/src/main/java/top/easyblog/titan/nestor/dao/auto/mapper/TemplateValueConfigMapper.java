@@ -1,21 +1,13 @@
 package top.easyblog.titan.nestor.dao.auto.mapper;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.DeleteProvider;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import top.easyblog.titan.nestor.dao.auto.model.TemplateValueConfig;
 import top.easyblog.titan.nestor.dao.auto.model.TemplateValueConfigExample;
 
+@Mapper
 public interface TemplateValueConfigMapper {
     @SelectProvider(type=TemplateValueConfigSqlProvider.class, method="countByExample")
     long countByExample(TemplateValueConfigExample example);
@@ -42,6 +34,7 @@ public interface TemplateValueConfigMapper {
     int insert(TemplateValueConfig record);
 
     @InsertProvider(type=TemplateValueConfigSqlProvider.class, method="insertSelective")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()",keyColumn = "id",keyProperty = "id", before = false, resultType = Long.class)
     int insertSelective(TemplateValueConfig record);
 
     @SelectProvider(type=TemplateValueConfigSqlProvider.class, method="selectByExample")

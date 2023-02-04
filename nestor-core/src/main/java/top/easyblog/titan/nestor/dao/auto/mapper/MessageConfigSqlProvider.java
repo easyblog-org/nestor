@@ -45,7 +45,7 @@ public class MessageConfigSqlProvider {
         }
         
         if (record.getTemplateValueConfigId() != null) {
-            sql.VALUES("template_value_config_id", "#{templateValueConfigId,jdbcType=VARCHAR}");
+            sql.VALUES("template_value_config_id", "#{templateValueConfigId,jdbcType=BIGINT}");
         }
         
         if (record.getDeleted() != null) {
@@ -111,7 +111,7 @@ public class MessageConfigSqlProvider {
         }
         
         if (record.getTemplateValueConfigId() != null) {
-            sql.SET("template_value_config_id = #{record.templateValueConfigId,jdbcType=VARCHAR}");
+            sql.SET("template_value_config_id = #{record.templateValueConfigId,jdbcType=BIGINT}");
         }
         
         if (record.getDeleted() != null) {
@@ -138,7 +138,7 @@ public class MessageConfigSqlProvider {
         sql.SET("code = #{record.code,jdbcType=VARCHAR}");
         sql.SET("type = #{record.type,jdbcType=VARCHAR}");
         sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        sql.SET("template_value_config_id = #{record.templateValueConfigId,jdbcType=VARCHAR}");
+        sql.SET("template_value_config_id = #{record.templateValueConfigId,jdbcType=BIGINT}");
         sql.SET("deleted = #{record.deleted,jdbcType=BIT}");
         sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
         sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
@@ -165,7 +165,7 @@ public class MessageConfigSqlProvider {
         }
         
         if (record.getTemplateValueConfigId() != null) {
-            sql.SET("template_value_config_id = #{templateValueConfigId,jdbcType=VARCHAR}");
+            sql.SET("template_value_config_id = #{templateValueConfigId,jdbcType=BIGINT}");
         }
         
         if (record.getDeleted() != null) {

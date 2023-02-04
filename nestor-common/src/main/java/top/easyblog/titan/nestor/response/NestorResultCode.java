@@ -25,7 +25,7 @@ public enum NestorResultCode {
     SIGN_NOT_FOUND,
     SING_HAS_EXPIRE,
 
-    REMOTE_INVOKE_FAIL;
+    REMOTE_INVOKE_FAIL, NULL_RECORD_NOT_ALLOW;
 
 
     public String getCode() {

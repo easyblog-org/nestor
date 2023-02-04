@@ -385,62 +385,52 @@ public class MessageConfigExample {
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdEqualTo(String value) {
+        public Criteria andTemplateValueConfigIdEqualTo(Long value) {
             addCriterion("template_value_config_id =", value, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdNotEqualTo(String value) {
+        public Criteria andTemplateValueConfigIdNotEqualTo(Long value) {
             addCriterion("template_value_config_id <>", value, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdGreaterThan(String value) {
+        public Criteria andTemplateValueConfigIdGreaterThan(Long value) {
             addCriterion("template_value_config_id >", value, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdGreaterThanOrEqualTo(String value) {
+        public Criteria andTemplateValueConfigIdGreaterThanOrEqualTo(Long value) {
             addCriterion("template_value_config_id >=", value, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdLessThan(String value) {
+        public Criteria andTemplateValueConfigIdLessThan(Long value) {
             addCriterion("template_value_config_id <", value, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdLessThanOrEqualTo(String value) {
+        public Criteria andTemplateValueConfigIdLessThanOrEqualTo(Long value) {
             addCriterion("template_value_config_id <=", value, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdLike(String value) {
-            addCriterion("template_value_config_id like", value, "templateValueConfigId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateValueConfigIdNotLike(String value) {
-            addCriterion("template_value_config_id not like", value, "templateValueConfigId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateValueConfigIdIn(List<String> values) {
+        public Criteria andTemplateValueConfigIdIn(List<Long> values) {
             addCriterion("template_value_config_id in", values, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdNotIn(List<String> values) {
+        public Criteria andTemplateValueConfigIdNotIn(List<Long> values) {
             addCriterion("template_value_config_id not in", values, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdBetween(String value1, String value2) {
+        public Criteria andTemplateValueConfigIdBetween(Long value1, Long value2) {
             addCriterion("template_value_config_id between", value1, value2, "templateValueConfigId");
             return (Criteria) this;
         }
 
-        public Criteria andTemplateValueConfigIdNotBetween(String value1, String value2) {
+        public Criteria andTemplateValueConfigIdNotBetween(Long value1, Long value2) {
             addCriterion("template_value_config_id not between", value1, value2, "templateValueConfigId");
             return (Criteria) this;
         }

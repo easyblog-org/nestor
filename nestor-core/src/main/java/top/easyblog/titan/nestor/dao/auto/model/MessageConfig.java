@@ -11,7 +11,7 @@ public class MessageConfig {
 
     private String name;
 
-    private String templateValueConfigId;
+    private Long templateValueConfigId;
 
     private Boolean deleted;
 
@@ -51,12 +51,12 @@ public class MessageConfig {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getTemplateValueConfigId() {
+    public Long getTemplateValueConfigId() {
         return templateValueConfigId;
     }
 
-    public void setTemplateValueConfigId(String templateValueConfigId) {
-        this.templateValueConfigId = templateValueConfigId == null ? null : templateValueConfigId.trim();
+    public void setTemplateValueConfigId(Long templateValueConfigId) {
+        this.templateValueConfigId = templateValueConfigId;
     }
 
     public Boolean getDeleted() {

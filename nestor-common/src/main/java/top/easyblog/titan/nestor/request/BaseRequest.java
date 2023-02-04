@@ -4,11 +4,11 @@ package top.easyblog.titan.nestor.request;
  * @author frank.huang
  * @date 2022/01/29 14:42
  */
-public interface BaseRequest {
+public abstract  class BaseRequest {
     /**
      * 请求参校验
      */
-    default boolean validate() {
+    public boolean validate() {
         return true;
     }
 
