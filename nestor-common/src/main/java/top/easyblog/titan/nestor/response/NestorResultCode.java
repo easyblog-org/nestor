@@ -14,6 +14,7 @@ import lombok.Getter;
 public enum NestorResultCode {
     //sever internal
     SUCCESS,
+    FAIL,
     INVALID_PARAMS,
     NOT_FOUND,
     INTERNAL_ERROR,
@@ -25,7 +26,7 @@ public enum NestorResultCode {
     SIGN_NOT_FOUND,
     SING_HAS_EXPIRE,
 
-    REMOTE_INVOKE_FAIL, NULL_RECORD_NOT_ALLOW;
+    REMOTE_INVOKE_FAIL, NULL_RECORD_NOT_ALLOW,;
 
 
     public String getCode() {
