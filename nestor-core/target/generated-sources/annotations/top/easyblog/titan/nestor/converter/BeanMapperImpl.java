@@ -10,7 +10,7 @@ import top.easyblog.titan.nestor.request.CreateTemplateValueConfigRequest;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-04T22:21:39+0800",
+    date = "2023-02-05T13:47:11+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 1.8.0_361 (Oracle Corporation)"
 )
 @Component

@@ -4,6 +4,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 import top.easyblog.titan.nestor.exception.BusinessException;
 import top.easyblog.titan.nestor.request.BaseRequest;
 import top.easyblog.titan.nestor.response.NestorResultCode;
@@ -16,6 +17,7 @@ import java.util.Objects;
  * @date 2022/01/29 14:45
  */
 @Aspect
+@Component
 public class ApiRequestAspect {
 
     @Pointcut("execution(public * top.easyblog.titan.nestor.controller..*.*(..)) && " +

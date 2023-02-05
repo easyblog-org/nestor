@@ -20,24 +20,18 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateMessageConfigRequest extends BaseRequest {
-
-    private String code;
-
-    @NotBlank(message = "Required param 'type' is not present")
-    private String type;
+public class UpdateMessageConfigRequest extends BaseRequest {
 
     @NotBlank(message = "Required param 'name' is not present")
     private String name;
 
-    private CreateTemplateValueConfigRequest templateValueConfig;
+    private Boolean deleted;
+
+    private UpdateTemplateValueConfigRequest templateValueConfig;
 
     @Override
     public boolean validate() {
-        assertNotNull(templateValueConfig, "Required param 'templateValueConfig' is not present");
-        assertNotNull(templateValueConfig.getType(), "Required param 'templateValueConfig.type' is not present");
-        assertNotEmpty(templateValueConfig.getExpression(), "Required param 'templateValueConfig.expression' is not present");
-        if(Objects.equals(TemplateValueConfigType.codeOf(templateValueConfig.getType()), TemplateValueConfigType.INTERFACE_DIRECT_VALUE) ||
+        if(Objects.nonNull(templateValueConfig) && Objects.equals(TemplateValueConfigType.codeOf(templateValueConfig.getType()), TemplateValueConfigType.INTERFACE_DIRECT_VALUE) ||
                 Objects.equals(TemplateValueConfigType.codeOf(templateValueConfig.getType()), TemplateValueConfigType.INTERFACE_JSON_VALUE)){
             assertNotEmpty(templateValueConfig.getUrl(), "Required param 'templateValueConfig.url' is not present");
         }

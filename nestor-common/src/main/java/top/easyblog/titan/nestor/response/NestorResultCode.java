@@ -26,7 +26,10 @@ public enum NestorResultCode {
     SIGN_NOT_FOUND,
     SING_HAS_EXPIRE,
 
-    REMOTE_INVOKE_FAIL, NULL_RECORD_NOT_ALLOW,;
+    REMOTE_INVOKE_FAIL,
+    DB_OPERATE_RECORD_NOT_ALLOW_NULL,   // 数据库操作实体对象不允许为null
+    ILLEGAL_CONFIG_TYPE,   // 非法的消息参数配置类型
+    ILLEGAL_TEMPLATE_VALUE_TYPE, MESSAGE_CONFIG_NOT_FOUND;   // 非法的消息参数模板取值配置类型
 
 
     public String getCode() {

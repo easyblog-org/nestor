@@ -9,6 +9,8 @@ import top.easyblog.titan.nestor.dao.auto.model.MessageConfig;
 import top.easyblog.titan.nestor.dao.auto.model.TemplateValueConfig;
 import top.easyblog.titan.nestor.request.CreateMessageConfigRequest;
 import top.easyblog.titan.nestor.request.CreateTemplateValueConfigRequest;
+import top.easyblog.titan.nestor.request.UpdateMessageConfigRequest;
+import top.easyblog.titan.nestor.request.UpdateTemplateValueConfigRequest;
 
 /**
  * @author: frank.huang
@@ -20,7 +22,13 @@ public interface BeanMapper {
     @Mapping(target = "templateValueConfigId", source = "templateValueConfigId")
     MessageConfig buildMessageConfig(CreateMessageConfigRequest request, Long templateValueConfigId);
 
+    @Mapping(target = "id", source = "id")
+    MessageConfig buildMessageConfig(UpdateMessageConfigRequest request, Long id);
+
     TemplateValueConfig buildTemplateConfig(CreateTemplateValueConfigRequest request);
+
+    @Mapping(target = "id", source = "id")
+    TemplateValueConfig buildTemplateConfig(UpdateTemplateValueConfigRequest request, Long id);
 
     @Mappings({
             @Mapping(target = "templateValueConfigType", source = "templateValueConfig.type"),

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * Paging response parameters
  *
@@ -15,12 +17,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageInfoResponse<T> {
+public class PageResponse<T> {
 
     /**
      * 总记录个数
      */
-    private Integer total;
+    private Long total;
 
     /**
      * 分页大小
@@ -33,12 +35,8 @@ public class PageInfoResponse<T> {
     private Integer offset;
 
     /**
-     * 此分页数据量
-     */
-    private Integer amount;
-    /**
      * 分页数据
      */
-    private T data;
+    private List<T> data;
 
 }

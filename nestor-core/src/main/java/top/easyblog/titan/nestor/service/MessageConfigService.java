@@ -1,6 +1,7 @@
 package top.easyblog.titan.nestor.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.easyblog.titan.nestor.annotation.Transaction;
@@ -8,10 +9,17 @@ import top.easyblog.titan.nestor.bean.MessageConfigBean;
 import top.easyblog.titan.nestor.converter.BeanMapper;
 import top.easyblog.titan.nestor.dao.auto.model.MessageConfig;
 import top.easyblog.titan.nestor.dao.auto.model.TemplateValueConfig;
-import top.easyblog.titan.nestor.request.CreateMessageConfigRequest;
-import top.easyblog.titan.nestor.request.CreateTemplateValueConfigRequest;
+import top.easyblog.titan.nestor.enums.MessageConfigType;
+import top.easyblog.titan.nestor.enums.TemplateValueConfigType;
+import top.easyblog.titan.nestor.exception.BusinessException;
+import top.easyblog.titan.nestor.request.*;
+import top.easyblog.titan.nestor.response.NestorResultCode;
+import top.easyblog.titan.nestor.response.PageResponse;
 import top.easyblog.titan.nestor.service.atomic.AtomicMessageConfigService;
 import top.easyblog.titan.nestor.service.atomic.AtomicTemplateValueConfigService;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 通知消息参数配置
@@ -34,10 +42,52 @@ public class MessageConfigService {
 
     @Transaction
     public MessageConfigBean createConfig(CreateMessageConfigRequest request) {
+        MessageConfigType messageConfigType = MessageConfigType.of(request.getType());
+        if (Objects.isNull(messageConfigType)) {
+            throw new BusinessException(NestorResultCode.ILLEGAL_CONFIG_TYPE);
+        }
+        TemplateValueConfigType templateValueConfigType = TemplateValueConfigType.codeOf(request.getTemplateValueConfig().getType());
+        if (Objects.isNull(templateValueConfigType)) {
+            throw new BusinessException(NestorResultCode.ILLEGAL_TEMPLATE_VALUE_TYPE);
+        }
         TemplateValueConfig templateValueConfig = beanMapper.buildTemplateConfig(request.getTemplateValueConfig());
         atomicTemplateValueConfigService.insertOne(templateValueConfig);
         MessageConfig messageConfig = beanMapper.buildMessageConfig(request, templateValueConfig.getId());
         atomicMessageConfigService.insertOne(messageConfig);
-        return beanMapper.buildMessageConfigBean(messageConfig,templateValueConfig);
+        return beanMapper.buildMessageConfigBean(messageConfig, templateValueConfig);
+    }
+
+
+    @Transaction
+    public void updateConfig(String code, UpdateMessageConfigRequest request) {
+        MessageConfig messageConfig = atomicMessageConfigService.queryByRequest(QueryMessageConfigRequest.builder()
+                .code(code).build());
+        if(Objects.isNull(messageConfig)){
+            throw new BusinessException(NestorResultCode.MESSAGE_CONFIG_NOT_FOUND);
+        }
+        MessageConfig newMessageConfig = beanMapper.buildMessageConfig(request, messageConfig.getId());
+        atomicMessageConfigService.updateByPKSelective(newMessageConfig);
+
+        TemplateValueConfig templateValueConfig = beanMapper.buildTemplateConfig(request.getTemplateValueConfig(), messageConfig.getTemplateValueConfigId());
+        atomicTemplateValueConfigService.updateByPKSelective(templateValueConfig);
+    }
+
+    public MessageConfigBean details(QueryMessageConfigRequest request) {
+        MessageConfig messageConfig = atomicMessageConfigService.queryByRequest(request);
+        if (Objects.isNull(messageConfig)) {
+            return null;
+        }
+        TemplateValueConfig templateValueConfig = atomicTemplateValueConfigService.queryByRequest(QueryTemplateValueConfigRequest.builder()
+                .id(messageConfig.getId()).build());
+        return beanMapper.buildMessageConfigBean(messageConfig, templateValueConfig);
+    }
+
+    public PageResponse<MessageConfigBean> list(QueryMessageConfigsRequest request) {
+        long amount = atomicMessageConfigService.countByRequest(request);
+        if (Objects.equals(NumberUtils.LONG_ZERO, amount)) {
+            return PageResponse.<MessageConfigBean>builder().total(amount).build();
+        }
+        List<MessageConfigBean> messageConfigBeans = atomicMessageConfigService.queryListByRequest(request);
+        return PageResponse.<MessageConfigBean>builder().total(amount).limit(request.getLimit()).offset(request.getOffset()).data(messageConfigBeans).build();
     }
 }
