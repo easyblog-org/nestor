@@ -14,7 +14,6 @@ import top.easyblog.titan.nestor.feign.config.http.converter.CustomGsonHttpMessa
 import top.easyblog.titan.nestor.handler.LogInterceptor;
 import top.easyblog.titan.nestor.response.NestorResultCode;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

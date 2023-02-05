@@ -18,6 +18,7 @@ import top.easyblog.titan.nestor.response.PageResponse;
 import top.easyblog.titan.nestor.service.atomic.AtomicMessageConfigService;
 import top.easyblog.titan.nestor.service.atomic.AtomicTemplateValueConfigService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -85,7 +86,7 @@ public class MessageConfigService {
     public PageResponse<MessageConfigBean> list(QueryMessageConfigsRequest request) {
         long amount = atomicMessageConfigService.countByRequest(request);
         if (Objects.equals(NumberUtils.LONG_ZERO, amount)) {
-            return PageResponse.<MessageConfigBean>builder().total(amount).build();
+            return PageResponse.<MessageConfigBean>builder().total(amount).offset(request.getOffset()).limit(request.getLimit()).data(Collections.emptyList()).build();
         }
         List<MessageConfigBean> messageConfigBeans = atomicMessageConfigService.queryListByRequest(request);
         return PageResponse.<MessageConfigBean>builder().total(amount).limit(request.getLimit()).offset(request.getOffset()).data(messageConfigBeans).build();

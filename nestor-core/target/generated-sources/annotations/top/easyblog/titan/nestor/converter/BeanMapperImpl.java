@@ -7,10 +7,12 @@ import top.easyblog.titan.nestor.dao.auto.model.MessageConfig;
 import top.easyblog.titan.nestor.dao.auto.model.TemplateValueConfig;
 import top.easyblog.titan.nestor.request.CreateMessageConfigRequest;
 import top.easyblog.titan.nestor.request.CreateTemplateValueConfigRequest;
+import top.easyblog.titan.nestor.request.UpdateMessageConfigRequest;
+import top.easyblog.titan.nestor.request.UpdateTemplateValueConfigRequest;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-05T13:47:11+0800",
+    date = "2023-02-05T21:22:11+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 1.8.0_361 (Oracle Corporation)"
 )
 @Component
@@ -25,11 +27,28 @@ public class BeanMapperImpl implements BeanMapper {
         MessageConfig messageConfig = new MessageConfig();
 
         if ( request != null ) {
-            messageConfig.setCode( request.getCode() );
             messageConfig.setType( request.getType() );
             messageConfig.setName( request.getName() );
         }
         messageConfig.setTemplateValueConfigId( templateValueConfigId );
+        messageConfig.setCode( top.easyblog.titan.nestor.util.IdGenerator.getUUID(MESSAGE_CONFIG_CODE_LEN) );
+
+        return messageConfig;
+    }
+
+    @Override
+    public MessageConfig buildMessageConfig(UpdateMessageConfigRequest request, Long id) {
+        if ( request == null && id == null ) {
+            return null;
+        }
+
+        MessageConfig messageConfig = new MessageConfig();
+
+        if ( request != null ) {
+            messageConfig.setName( request.getName() );
+            messageConfig.setDeleted( request.getDeleted() );
+        }
+        messageConfig.setId( id );
 
         return messageConfig;
     }
@@ -45,6 +64,25 @@ public class BeanMapperImpl implements BeanMapper {
         templateValueConfig.setType( request.getType() );
         templateValueConfig.setExpression( request.getExpression() );
         templateValueConfig.setUrl( request.getUrl() );
+
+        return templateValueConfig;
+    }
+
+    @Override
+    public TemplateValueConfig buildTemplateConfig(UpdateTemplateValueConfigRequest request, Long id) {
+        if ( request == null && id == null ) {
+            return null;
+        }
+
+        TemplateValueConfig templateValueConfig = new TemplateValueConfig();
+
+        if ( request != null ) {
+            templateValueConfig.setType( request.getType() );
+            templateValueConfig.setExpression( request.getExpression() );
+            templateValueConfig.setUrl( request.getUrl() );
+            templateValueConfig.setDeleted( request.getDeleted() );
+        }
+        templateValueConfig.setId( id );
 
         return templateValueConfig;
     }

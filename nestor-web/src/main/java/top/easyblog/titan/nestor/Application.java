@@ -12,9 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableFeignClients
 @EnableTransactionManagement
-@MapperScans({
-        @MapperScan("top.easyblog.titan.nestor.dao")
-})
+@MapperScan("top.easyblog.titan.nestor.dao")
 @EnableAspectJAutoProxy
 @SpringBootApplication(scanBasePackages = {"top.easyblog.titan.nestor"})
 public class Application {

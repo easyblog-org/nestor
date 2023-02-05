@@ -19,6 +19,9 @@ import top.easyblog.titan.nestor.request.UpdateTemplateValueConfigRequest;
 @Mapper(componentModel = "spring")
 public interface BeanMapper {
 
+    int MESSAGE_CONFIG_CODE_LEN = 8;
+
+    @Mapping(target = "code", expression = "java(top.easyblog.titan.nestor.util.IdGenerator.getUUID(MESSAGE_CONFIG_CODE_LEN))")
     @Mapping(target = "templateValueConfigId", source = "templateValueConfigId")
     MessageConfig buildMessageConfig(CreateMessageConfigRequest request, Long templateValueConfigId);
 

@@ -43,6 +43,7 @@
         <nacos-config-verion>2021.1</nacos-config-verion>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+        <logback.version>1.2.11</logback.version>
     </properties>
 
     <dependencyManagement>
@@ -51,6 +52,12 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson-version}</version>
+            </dependency>
+            <!-- logback-classic -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
             <!-- commons-collections4 -->
             <dependency>
@@ -143,7 +150,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.mapstruct</groupId>

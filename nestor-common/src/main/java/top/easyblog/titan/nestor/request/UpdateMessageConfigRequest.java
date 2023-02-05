@@ -1,9 +1,6 @@
 package top.easyblog.titan.nestor.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import top.easyblog.titan.nestor.enums.TemplateValueConfigType;
 
 import javax.validation.constraints.NotBlank;
@@ -20,6 +17,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 public class UpdateMessageConfigRequest extends BaseRequest {
 
     @NotBlank(message = "Required param 'name' is not present")
