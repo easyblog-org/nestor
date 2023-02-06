@@ -1,13 +1,21 @@
 package top.easyblog.titan.nestor.dao.auto.mapper;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 import top.easyblog.titan.nestor.dao.auto.model.MessageConfigRule;
 import top.easyblog.titan.nestor.dao.auto.model.MessageConfigRuleExample;
 
-@Mapper
 public interface MessageConfigRuleMapper {
     @SelectProvider(type=MessageConfigRuleSqlProvider.class, method="countByExample")
     long countByExample(MessageConfigRuleExample example);
@@ -27,13 +35,13 @@ public interface MessageConfigRuleMapper {
         "group, priority, ",
         "channel, config_ids, ",
         "deleted, create_time, ",
-        "update_time)",
+        "update_time, code)",
         "values (#{id,jdbcType=BIGINT}, #{businessModule,jdbcType=VARCHAR}, ",
         "#{businessEvent,jdbcType=VARCHAR}, #{templateCode,jdbcType=VARCHAR}, ",
         "#{group,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, ",
         "#{channel,jdbcType=TINYINT}, #{configIds,jdbcType=VARCHAR}, ",
         "#{deleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP})"
+        "#{updateTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR})"
     })
     int insert(MessageConfigRule record);
 
@@ -52,14 +60,15 @@ public interface MessageConfigRuleMapper {
         @Result(column="config_ids", property="configIds", jdbcType=JdbcType.VARCHAR),
         @Result(column="deleted", property="deleted", jdbcType=JdbcType.BIT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR)
     })
     List<MessageConfigRule> selectByExample(MessageConfigRuleExample example);
 
     @Select({
         "select",
         "id, business_module, business_event, template_code, group, priority, channel, ",
-        "config_ids, deleted, create_time, update_time",
+        "config_ids, deleted, create_time, update_time, code",
         "from message_config_rule",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -74,7 +83,8 @@ public interface MessageConfigRuleMapper {
         @Result(column="config_ids", property="configIds", jdbcType=JdbcType.VARCHAR),
         @Result(column="deleted", property="deleted", jdbcType=JdbcType.BIT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR)
     })
     MessageConfigRule selectByPrimaryKey(Long id);
 
@@ -98,7 +108,8 @@ public interface MessageConfigRuleMapper {
           "config_ids = #{configIds,jdbcType=VARCHAR},",
           "deleted = #{deleted,jdbcType=BIT},",
           "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP}",
+          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
+          "code = #{code,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(MessageConfigRule record);

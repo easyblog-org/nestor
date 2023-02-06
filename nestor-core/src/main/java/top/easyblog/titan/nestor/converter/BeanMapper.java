@@ -1,16 +1,14 @@
 package top.easyblog.titan.nestor.converter;
 
-import org.mapstruct.MapMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import top.easyblog.titan.nestor.bean.MessageConfigBean;
+import top.easyblog.titan.nestor.bean.MessageConfigRuleBean;
 import top.easyblog.titan.nestor.dao.auto.model.MessageConfig;
+import top.easyblog.titan.nestor.dao.auto.model.MessageConfigRule;
 import top.easyblog.titan.nestor.dao.auto.model.TemplateValueConfig;
-import top.easyblog.titan.nestor.request.CreateMessageConfigRequest;
-import top.easyblog.titan.nestor.request.CreateTemplateValueConfigRequest;
-import top.easyblog.titan.nestor.request.UpdateMessageConfigRequest;
-import top.easyblog.titan.nestor.request.UpdateTemplateValueConfigRequest;
+import top.easyblog.titan.nestor.request.*;
 
 /**
  * @author: frank.huang
@@ -43,4 +41,12 @@ public interface BeanMapper {
             @Mapping(target = "updateTime", expression = "java(messageConfig.getUpdateTime().getTime())")
     })
     MessageConfigBean buildMessageConfigBean(MessageConfig messageConfig, TemplateValueConfig templateValueConfig);
+
+    @Mapping(target = "code", expression = "java(top.easyblog.titan.nestor.util.IdGenerator.getUUID(MESSAGE_CONFIG_CODE_LEN))")
+    MessageConfigRule buildMessageConfigRule(CreateMessageConfigRuleRequest request);
+
+    @Mapping(target = "id", source = "id")
+    MessageConfigRule buildMessageConfigRule(UpdateMessageConfigRuleRequest request,Long id);
+
+    MessageConfigRuleBean buildMessageConfigRuleBean(MessageConfigRule messageConfigRule);
 }

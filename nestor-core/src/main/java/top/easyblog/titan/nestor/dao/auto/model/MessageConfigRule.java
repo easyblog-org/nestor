@@ -25,6 +25,8 @@ public class MessageConfigRule {
 
     private Date updateTime;
 
+    private String code;
+
     public Long getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class MessageConfigRule {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
     }
 }

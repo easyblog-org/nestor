@@ -55,7 +55,7 @@
         </javaClientGenerator>
 
         <!--请根据自己数据库对应的表名进行配置修改，这里仅供参考-->
-        <table tableName="message_config"
+        <table tableName="message_config_rule"
                enableCountByExample="true"
                enableDeleteByExample="true"
                enableUpdateByExample="true"

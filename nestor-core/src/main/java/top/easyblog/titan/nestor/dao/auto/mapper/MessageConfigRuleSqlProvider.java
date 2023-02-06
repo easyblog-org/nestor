@@ -72,6 +72,10 @@ public class MessageConfigRuleSqlProvider {
             sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getCode() != null) {
+            sql.VALUES("code", "#{code,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -92,6 +96,7 @@ public class MessageConfigRuleSqlProvider {
         sql.SELECT("deleted");
         sql.SELECT("create_time");
         sql.SELECT("update_time");
+        sql.SELECT("code");
         sql.FROM("message_config_rule");
         applyWhere(sql, example, false);
         
@@ -153,6 +158,10 @@ public class MessageConfigRuleSqlProvider {
             sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getCode() != null) {
+            sql.SET("code = #{record.code,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -172,6 +181,7 @@ public class MessageConfigRuleSqlProvider {
         sql.SET("deleted = #{record.deleted,jdbcType=BIT}");
         sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
         sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+        sql.SET("code = #{record.code,jdbcType=VARCHAR}");
         
         MessageConfigRuleExample example = (MessageConfigRuleExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -220,6 +230,10 @@ public class MessageConfigRuleSqlProvider {
         
         if (record.getUpdateTime() != null) {
             sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getCode() != null) {
+            sql.SET("code = #{code,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=BIGINT}");

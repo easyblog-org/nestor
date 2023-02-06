@@ -49,19 +49,19 @@
 
     <sql id="message_config_where_condition">
         <if test="request.codes!=null and request.codes.size()>0">
-            mc.code in
+            and mc.code in
             <foreach collection="request.codes" item="code" open="(" separator="," close=")">
                 #{code}
             </foreach>
         </if>
         <if test="request.types!=null and request.types.size()>0">
-            mc.type in
+            and mc.type in
             <foreach collection="request.types" item="type" open="(" separator="," close=")">
                 #{type}
             </foreach>
         </if>
         <if test="request.deleted!=null">
-            mc.deleted=#{request.deleted}
+            and mc.deleted=#{request.deleted}
         </if>
     </sql>
 
