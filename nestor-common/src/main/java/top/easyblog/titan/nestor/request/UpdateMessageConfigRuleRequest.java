@@ -22,7 +22,7 @@ public class UpdateMessageConfigRuleRequest {
 
     private String templateCode;
 
-    private String group;
+    private String msgGroup;
 
     @Min(value = 0, message = "Param 'priority'  must bigger than 0")
     private Integer priority;

@@ -16,7 +16,7 @@ import top.easyblog.titan.nestor.request.UpdateTemplateValueConfigRequest;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-06T21:30:39+0800",
+    date = "2023-02-11T15:23:40+0800",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 1.8.0_361 (Oracle Corporation)"
 )
 @Component
@@ -110,8 +110,8 @@ public class BeanMapperImpl implements BeanMapper {
             messageConfigBean.setExpression( templateValueConfig.getExpression() );
             messageConfigBean.setUrl( templateValueConfig.getUrl() );
         }
-        messageConfigBean.setCreateTime( messageConfig.getCreateTime().getTime() );
-        messageConfigBean.setUpdateTime( messageConfig.getUpdateTime().getTime() );
+        messageConfigBean.setCreateTime( messageConfig.getCreateTime().getTime()/1000 );
+        messageConfigBean.setUpdateTime( messageConfig.getUpdateTime().getTime()/1000 );
 
         return messageConfigBean;
     }
@@ -127,7 +127,7 @@ public class BeanMapperImpl implements BeanMapper {
         messageConfigRule.setBusinessModule( request.getBusinessModule() );
         messageConfigRule.setBusinessEvent( request.getBusinessEvent() );
         messageConfigRule.setTemplateCode( request.getTemplateCode() );
-        messageConfigRule.setGroup( request.getGroup() );
+        messageConfigRule.setMsgGroup( request.getMsgGroup() );
         messageConfigRule.setPriority( request.getPriority() );
         messageConfigRule.setChannel( request.getChannel() );
         messageConfigRule.setConfigIds( request.getConfigIds() );
@@ -149,7 +149,7 @@ public class BeanMapperImpl implements BeanMapper {
             messageConfigRule.setBusinessModule( request.getBusinessModule() );
             messageConfigRule.setBusinessEvent( request.getBusinessEvent() );
             messageConfigRule.setTemplateCode( request.getTemplateCode() );
-            messageConfigRule.setGroup( request.getGroup() );
+            messageConfigRule.setMsgGroup( request.getMsgGroup() );
             messageConfigRule.setPriority( request.getPriority() );
             messageConfigRule.setChannel( request.getChannel() );
             messageConfigRule.setConfigIds( request.getConfigIds() );
@@ -172,13 +172,14 @@ public class BeanMapperImpl implements BeanMapper {
         messageConfigRuleBean.setBusinessModule( messageConfigRule.getBusinessModule() );
         messageConfigRuleBean.setBusinessEvent( messageConfigRule.getBusinessEvent() );
         messageConfigRuleBean.setTemplateCode( messageConfigRule.getTemplateCode() );
-        messageConfigRuleBean.setGroup( messageConfigRule.getGroup() );
+        messageConfigRuleBean.setMsgGroup( messageConfigRule.getMsgGroup() );
         messageConfigRuleBean.setPriority( messageConfigRule.getPriority() );
         messageConfigRuleBean.setChannel( messageConfigRule.getChannel() );
         messageConfigRuleBean.setConfigIds( messageConfigRule.getConfigIds() );
         messageConfigRuleBean.setDeleted( messageConfigRule.getDeleted() );
-        messageConfigRuleBean.setCreateTime( messageConfigRule.getCreateTime() );
-        messageConfigRuleBean.setUpdateTime( messageConfigRule.getUpdateTime() );
+
+        messageConfigRuleBean.setCreateTime( messageConfigRule.getCreateTime().getTime()/1000 );
+        messageConfigRuleBean.setUpdateTime( messageConfigRule.getUpdateTime().getTime()/1000 );
 
         return messageConfigRuleBean;
     }

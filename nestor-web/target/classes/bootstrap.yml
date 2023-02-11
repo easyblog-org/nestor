@@ -16,3 +16,6 @@ spring:
         server-addr: 124.221.78.126:8090
         file-extension: yml
         group: DEFAULT_GROUP
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

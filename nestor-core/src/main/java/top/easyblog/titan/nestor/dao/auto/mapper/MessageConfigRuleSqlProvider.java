@@ -44,8 +44,8 @@ public class MessageConfigRuleSqlProvider {
             sql.VALUES("template_code", "#{templateCode,jdbcType=VARCHAR}");
         }
         
-        if (record.getGroup() != null) {
-            sql.VALUES("group", "#{group,jdbcType=VARCHAR}");
+        if (record.getMsgGroup() != null) {
+            sql.VALUES("msg_group", "#{msgGroup,jdbcType=VARCHAR}");
         }
         
         if (record.getPriority() != null) {
@@ -89,7 +89,7 @@ public class MessageConfigRuleSqlProvider {
         sql.SELECT("business_module");
         sql.SELECT("business_event");
         sql.SELECT("template_code");
-        sql.SELECT("group");
+        sql.SELECT("msg_group");
         sql.SELECT("priority");
         sql.SELECT("channel");
         sql.SELECT("config_ids");
@@ -103,8 +103,17 @@ public class MessageConfigRuleSqlProvider {
         if (example != null && example.getOrderByClause() != null) {
             sql.ORDER_BY(example.getOrderByClause());
         }
-        
-        return sql.toString();
+
+        StringBuilder sqlBuilder = new StringBuilder(sql.toString());
+        if (example != null && example.getLimit() != null) {
+            if (example.getOffset() != null) {
+                sqlBuilder.append(String.format(" limit %s,%s", example.getOffset(), example.getLimit()));
+            } else {
+                sqlBuilder.append(String.format(" limit %s", example.getLimit()));
+            }
+        }
+
+        return sqlBuilder.toString();
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
@@ -130,8 +139,8 @@ public class MessageConfigRuleSqlProvider {
             sql.SET("template_code = #{record.templateCode,jdbcType=VARCHAR}");
         }
         
-        if (record.getGroup() != null) {
-            sql.SET("group = #{record.group,jdbcType=VARCHAR}");
+        if (record.getMsgGroup() != null) {
+            sql.SET("msg_group = #{record.msgGroup,jdbcType=VARCHAR}");
         }
         
         if (record.getPriority() != null) {
@@ -174,7 +183,7 @@ public class MessageConfigRuleSqlProvider {
         sql.SET("business_module = #{record.businessModule,jdbcType=VARCHAR}");
         sql.SET("business_event = #{record.businessEvent,jdbcType=VARCHAR}");
         sql.SET("template_code = #{record.templateCode,jdbcType=VARCHAR}");
-        sql.SET("group = #{record.group,jdbcType=VARCHAR}");
+        sql.SET("msg_group = #{record.msgGroup,jdbcType=VARCHAR}");
         sql.SET("priority = #{record.priority,jdbcType=INTEGER}");
         sql.SET("channel = #{record.channel,jdbcType=TINYINT}");
         sql.SET("config_ids = #{record.configIds,jdbcType=VARCHAR}");
@@ -204,8 +213,8 @@ public class MessageConfigRuleSqlProvider {
             sql.SET("template_code = #{templateCode,jdbcType=VARCHAR}");
         }
         
-        if (record.getGroup() != null) {
-            sql.SET("group = #{group,jdbcType=VARCHAR}");
+        if (record.getMsgGroup() != null) {
+            sql.SET("msg_group = #{msgGroup,jdbcType=VARCHAR}");
         }
         
         if (record.getPriority() != null) {

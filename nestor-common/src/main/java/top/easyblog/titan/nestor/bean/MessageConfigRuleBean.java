@@ -20,7 +20,7 @@ public class MessageConfigRuleBean {
 
     private String templateCode;
 
-    private String group;
+    private String msgGroup;
 
     private Integer priority;
 
@@ -30,7 +30,7 @@ public class MessageConfigRuleBean {
 
     private Boolean deleted;
 
-    private Date createTime;
+    private Long createTime;
 
-    private Date updateTime;
+    private Long updateTime;
 }

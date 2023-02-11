@@ -11,7 +11,7 @@ public class MessageConfigRule {
 
     private String templateCode;
 
-    private String group;
+    private String msgGroup;
 
     private Integer priority;
 
@@ -59,12 +59,12 @@ public class MessageConfigRule {
         this.templateCode = templateCode == null ? null : templateCode.trim();
     }
 
-    public String getGroup() {
-        return group;
+    public String getMsgGroup() {
+        return msgGroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group == null ? null : group.trim();
+    public void setMsgGroup(String msgGroup) {
+        this.msgGroup = msgGroup == null ? null : msgGroup.trim();
     }
 
     public Integer getPriority() {

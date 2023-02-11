@@ -11,6 +11,21 @@ public class MessageConfigRuleExample {
 
     protected List<Criteria> oredCriteria;
 
+    private Integer limit;
+
+    private Integer offset;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+    public Integer getLimit() {
+        return limit;
+    }
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+    public Integer getOffset() {
+        return offset;
+    }
     public MessageConfigRuleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -375,73 +390,73 @@ public class MessageConfigRuleExample {
             return (Criteria) this;
         }
 
-        public Criteria andGroupIsNull() {
-            addCriterion("group is null");
+        public Criteria andMsgGroupIsNull() {
+            addCriterion("msg_group is null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIsNotNull() {
-            addCriterion("group is not null");
+        public Criteria andMsgGroupIsNotNull() {
+            addCriterion("msg_group is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupEqualTo(String value) {
-            addCriterion("group =", value, "group");
+        public Criteria andMsgGroupEqualTo(String value) {
+            addCriterion("msg_group =", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupNotEqualTo(String value) {
-            addCriterion("group <>", value, "group");
+        public Criteria andMsgGroupNotEqualTo(String value) {
+            addCriterion("msg_group <>", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupGreaterThan(String value) {
-            addCriterion("group >", value, "group");
+        public Criteria andMsgGroupGreaterThan(String value) {
+            addCriterion("msg_group >", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupGreaterThanOrEqualTo(String value) {
-            addCriterion("group >=", value, "group");
+        public Criteria andMsgGroupGreaterThanOrEqualTo(String value) {
+            addCriterion("msg_group >=", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupLessThan(String value) {
-            addCriterion("group <", value, "group");
+        public Criteria andMsgGroupLessThan(String value) {
+            addCriterion("msg_group <", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupLessThanOrEqualTo(String value) {
-            addCriterion("group <=", value, "group");
+        public Criteria andMsgGroupLessThanOrEqualTo(String value) {
+            addCriterion("msg_group <=", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupLike(String value) {
-            addCriterion("group like", value, "group");
+        public Criteria andMsgGroupLike(String value) {
+            addCriterion("msg_group like", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupNotLike(String value) {
-            addCriterion("group not like", value, "group");
+        public Criteria andMsgGroupNotLike(String value) {
+            addCriterion("msg_group not like", value, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIn(List<String> values) {
-            addCriterion("group in", values, "group");
+        public Criteria andMsgGroupIn(List<String> values) {
+            addCriterion("msg_group in", values, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupNotIn(List<String> values) {
-            addCriterion("group not in", values, "group");
+        public Criteria andMsgGroupNotIn(List<String> values) {
+            addCriterion("msg_group not in", values, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupBetween(String value1, String value2) {
-            addCriterion("group between", value1, value2, "group");
+        public Criteria andMsgGroupBetween(String value1, String value2) {
+            addCriterion("msg_group between", value1, value2, "msgGroup");
             return (Criteria) this;
         }
 
-        public Criteria andGroupNotBetween(String value1, String value2) {
-            addCriterion("group not between", value1, value2, "group");
+        public Criteria andMsgGroupNotBetween(String value1, String value2) {
+            addCriterion("msg_group not between", value1, value2, "msgGroup");
             return (Criteria) this;
         }
 

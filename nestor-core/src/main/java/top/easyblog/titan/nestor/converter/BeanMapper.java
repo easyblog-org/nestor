@@ -37,8 +37,8 @@ public interface BeanMapper {
             @Mapping(target = "url", source = "templateValueConfig.url"),
             @Mapping(target = "type", source = "messageConfig.type"),
             @Mapping(target = "deleted", source = "messageConfig.deleted"),
-            @Mapping(target = "createTime", expression = "java(messageConfig.getCreateTime().getTime())"),
-            @Mapping(target = "updateTime", expression = "java(messageConfig.getUpdateTime().getTime())")
+            @Mapping(target = "createTime", expression = "java(messageConfig.getCreateTime().getTime()/1000)"),
+            @Mapping(target = "updateTime", expression = "java(messageConfig.getUpdateTime().getTime()/1000)")
     })
     MessageConfigBean buildMessageConfigBean(MessageConfig messageConfig, TemplateValueConfig templateValueConfig);
 
@@ -46,7 +46,9 @@ public interface BeanMapper {
     MessageConfigRule buildMessageConfigRule(CreateMessageConfigRuleRequest request);
 
     @Mapping(target = "id", source = "id")
-    MessageConfigRule buildMessageConfigRule(UpdateMessageConfigRuleRequest request,Long id);
+    MessageConfigRule buildMessageConfigRule(UpdateMessageConfigRuleRequest request, Long id);
 
+    @Mapping(target = "createTime", expression = "java(messageConfigRule.getCreateTime().getTime()/1000)")
+    @Mapping(target = "updateTime", expression = "java(messageConfigRule.getUpdateTime().getTime()/1000)")
     MessageConfigRuleBean buildMessageConfigRuleBean(MessageConfigRule messageConfigRule);
 }

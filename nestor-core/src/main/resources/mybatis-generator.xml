@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="/Users/mac/Documents/apache-maven-3.8.7/repository/mysql/mysql-connector-java/8.0.17/mysql-connector-java-8.0.17.jar"/>
+
     <context id="testTables" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>

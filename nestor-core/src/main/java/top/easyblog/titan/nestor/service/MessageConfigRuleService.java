@@ -117,6 +117,5 @@ public class MessageConfigRuleService {
         List<MessageConfigRule> messageConfigRules = messageConfigRuleService.queryListByRequest(request);
         List<MessageConfigRuleBean> messageConfigRuleBeans = messageConfigRules.stream().map(config -> beanMapper.buildMessageConfigRuleBean(config)).collect(Collectors.toList());
         return PageResponse.<MessageConfigRuleBean>builder().total(total).offset(request.getOffset()).limit(request.getLimit()).data(messageConfigRuleBeans).build();
-
     }
 }

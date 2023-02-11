@@ -32,13 +32,13 @@ public interface MessageConfigRuleMapper {
     @Insert({
         "insert into message_config_rule (id, business_module, ",
         "business_event, template_code, ",
-        "group, priority, ",
+        "msg_group, priority, ",
         "channel, config_ids, ",
         "deleted, create_time, ",
         "update_time, code)",
         "values (#{id,jdbcType=BIGINT}, #{businessModule,jdbcType=VARCHAR}, ",
         "#{businessEvent,jdbcType=VARCHAR}, #{templateCode,jdbcType=VARCHAR}, ",
-        "#{group,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, ",
+        "#{msgGroup,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, ",
         "#{channel,jdbcType=TINYINT}, #{configIds,jdbcType=VARCHAR}, ",
         "#{deleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, ",
         "#{updateTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR})"
@@ -54,7 +54,7 @@ public interface MessageConfigRuleMapper {
         @Result(column="business_module", property="businessModule", jdbcType=JdbcType.VARCHAR),
         @Result(column="business_event", property="businessEvent", jdbcType=JdbcType.VARCHAR),
         @Result(column="template_code", property="templateCode", jdbcType=JdbcType.VARCHAR),
-        @Result(column="group", property="group", jdbcType=JdbcType.VARCHAR),
+        @Result(column="msg_group", property="msgGroup", jdbcType=JdbcType.VARCHAR),
         @Result(column="priority", property="priority", jdbcType=JdbcType.INTEGER),
         @Result(column="channel", property="channel", jdbcType=JdbcType.TINYINT),
         @Result(column="config_ids", property="configIds", jdbcType=JdbcType.VARCHAR),
@@ -67,7 +67,7 @@ public interface MessageConfigRuleMapper {
 
     @Select({
         "select",
-        "id, business_module, business_event, template_code, group, priority, channel, ",
+        "id, business_module, business_event, template_code, msg_group, priority, channel, ",
         "config_ids, deleted, create_time, update_time, code",
         "from message_config_rule",
         "where id = #{id,jdbcType=BIGINT}"
@@ -77,7 +77,7 @@ public interface MessageConfigRuleMapper {
         @Result(column="business_module", property="businessModule", jdbcType=JdbcType.VARCHAR),
         @Result(column="business_event", property="businessEvent", jdbcType=JdbcType.VARCHAR),
         @Result(column="template_code", property="templateCode", jdbcType=JdbcType.VARCHAR),
-        @Result(column="group", property="group", jdbcType=JdbcType.VARCHAR),
+        @Result(column="msg_group", property="msgGroup", jdbcType=JdbcType.VARCHAR),
         @Result(column="priority", property="priority", jdbcType=JdbcType.INTEGER),
         @Result(column="channel", property="channel", jdbcType=JdbcType.TINYINT),
         @Result(column="config_ids", property="configIds", jdbcType=JdbcType.VARCHAR),
@@ -102,7 +102,7 @@ public interface MessageConfigRuleMapper {
         "set business_module = #{businessModule,jdbcType=VARCHAR},",
           "business_event = #{businessEvent,jdbcType=VARCHAR},",
           "template_code = #{templateCode,jdbcType=VARCHAR},",
-          "group = #{group,jdbcType=VARCHAR},",
+          "msg_group = #{msgGroup,jdbcType=VARCHAR},",
           "priority = #{priority,jdbcType=INTEGER},",
           "channel = #{channel,jdbcType=TINYINT},",
           "config_ids = #{configIds,jdbcType=VARCHAR},",

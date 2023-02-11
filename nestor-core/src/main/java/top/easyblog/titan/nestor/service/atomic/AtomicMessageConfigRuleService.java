@@ -2,6 +2,7 @@ package top.easyblog.titan.nestor.service.atomic;
 
 import com.google.common.collect.Iterables;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,10 +67,35 @@ public class AtomicMessageConfigRuleService {
     }
 
     public long countByRequest(QueryMessageConfigRulesRequest request) {
-        return 0;
+        MessageConfigRuleExample example = generateExamples(request);
+        return messageConfigRuleMapper.countByExample(example);
     }
 
     public List<MessageConfigRule> queryListByRequest(QueryMessageConfigRulesRequest request) {
-        return null;
+        MessageConfigRuleExample example = generateExamples(request);
+        example.setLimit(request.getLimit());
+        example.setOffset(request.getOffset());
+        return messageConfigRuleMapper.selectByExample(example);
+    }
+
+    private MessageConfigRuleExample generateExamples(QueryMessageConfigRulesRequest request) {
+        MessageConfigRuleExample example = new MessageConfigRuleExample();
+        MessageConfigRuleExample.Criteria criteria = example.createCriteria();
+        if (CollectionUtils.isNotEmpty(request.getCodes())) {
+            criteria.andCodeIn(request.getCodes());
+        }
+        if (CollectionUtils.isNotEmpty(request.getChannels())) {
+            criteria.andChannelIn(request.getChannels());
+        }
+        if (CollectionUtils.isNotEmpty(request.getBusinessEvents())) {
+            criteria.andBusinessEventIn(request.getBusinessEvents());
+        }
+        if (CollectionUtils.isNotEmpty(request.getBusinessModules())) {
+            criteria.andBusinessModuleIn(request.getBusinessModules());
+        }
+        if (Objects.nonNull(request.getDeleted())) {
+            criteria.andDeletedEqualTo(request.getDeleted());
+        }
+        return example;
     }
 }

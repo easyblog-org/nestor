@@ -27,7 +27,7 @@ public class CreateMessageConfigRuleRequest {
     @NotBlank(message = "Required param 'template_code' is not present.")
     private String templateCode;
 
-    private String group;
+    private String msgGroup;
 
     @Builder.Default
     @Min(value = 1, message = "Param 'priority'  must bigger than 1")
