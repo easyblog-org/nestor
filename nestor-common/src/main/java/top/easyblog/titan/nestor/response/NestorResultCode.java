@@ -44,8 +44,12 @@ public enum NestorResultCode {
     MESSAGE_CONFIG_NOT_FOUND,
     // 消息规则未找到
     MESSAGE_CONFIG_RULE_NOT_FOUND,
-
-    ;
+    // 消息发送记录不存在
+    SEND_RECORD_NOT_FOUND,
+    // 发送消息失败
+    SEND_MESSAGE_FAILED,
+    // 不合法的消息
+    ILLEGAL_MESSAGE_RECORD;
 
 
     public String getCode() {

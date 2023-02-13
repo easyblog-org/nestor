@@ -12,35 +12,35 @@ import java.util.Objects;
  */
 @Getter
 @AllArgsConstructor
-public enum MessageSendChannel {
+public enum MessageSendStatus {
 
     /**
-     * 纯文本邮件
+     * 已初始化
      */
-    PLAIN_EMAIL((byte) 10),
+    INITIALIZED((byte) 1),
     /**
-     * 带附件的邮件 attachment
+     * 发送成功
      */
-    ATTACHMENT_EMAIL((byte) 11),
+    SUCCESS((byte) 2),
     /**
-     * 短信
+     * 发送失败
      */
-    SMS((byte) 20),
+    FAILED((byte) 3),
     /**
-     * 微信通知
+     * 发送中
      */
-    WX((byte) 30),
+    SENDING((byte) 10),
 
     ;
 
     private final byte code;
 
 
-    public static MessageSendChannel codeOf(Byte code) {
+    public static MessageSendStatus codeOf(Byte code) {
         if (Objects.isNull(code)) {
             return null;
         }
-        return Arrays.stream(MessageSendChannel.values())
+        return Arrays.stream(MessageSendStatus.values())
                 .filter(channel -> Objects.equals(channel.getCode(), code))
                 .findAny().orElse(null);
     }
