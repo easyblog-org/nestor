@@ -1,0 +1,21 @@
+server:
+  port: 8001
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health
+spring:
+  profiles:
+    active: dev
+  application:
+    name: nestor
+  cloud:
+    nacos:
+      config:
+        server-addr: 124.221.78.126:8090
+        file-extension: yml
+        group: DEFAULT_GROUP
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,5 +1,7 @@
 package top.easyblog.titan.nestor.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.UUID;
 
 /**
@@ -8,19 +10,26 @@ import java.util.UUID;
  */
 public class IdGenerator {
 
-    private IdGenerator(){}
 
-    public static String getRequestId(){
-        return getUUID();
+    public static final int MAX_UUID_LEN = 32;
+
+    private IdGenerator() {
     }
 
-    public static String getTraceId(){
-        return getUUID() + ((int)((Math.random() * 9 + 1) * 100000));
+    public static String getRequestId() {
+        return getUUID(MAX_UUID_LEN);
+    }
+
+    public static String getTraceId() {
+        return getUUID(MAX_UUID_LEN) + ((int) ((Math.random() * 9 + 1) * 100000));
     }
 
 
-    public static String getUUID(){
-        return UUID.randomUUID().toString().replace("-","");
+    public static String getUUID(int len) {
+        if (len <= 0 || len > MAX_UUID_LEN) {
+            return StringUtils.EMPTY;
+        }
+        return UUID.randomUUID().toString().replace("-", "").substring(0, len);
     }
 
 

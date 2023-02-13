@@ -1,6 +1,7 @@
 package top.easyblog.titan.nestor.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -8,8 +9,10 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import top.easyblog.titan.nestor.exception.BusinessException;
 import top.easyblog.titan.nestor.feign.config.http.converter.CustomGsonHttpMessageConverter;
 import top.easyblog.titan.nestor.handler.LogInterceptor;
+import top.easyblog.titan.nestor.response.NestorResultCode;
 
 import java.util.List;
 
@@ -47,5 +50,12 @@ public class WebAppConfigurer implements WebMvcConfigurer {
     @Bean
     public GsonHttpMessageConverter customConverters() {
         return new CustomGsonHttpMessageConverter();
+    }
+
+    @Bean
+    public ErrorViewResolver errorViewResolver() {
+        return (request, status, model) -> {
+           throw new BusinessException(NestorResultCode.FAIL);
+        };
     }
 }

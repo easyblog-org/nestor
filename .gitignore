@@ -7,9 +7,9 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
-${artifactId}-common/target
-${artifactId}-core/target
-${artifactId}-web/target
+nestor-common/target
+nestor-core/target
+nestor-web/target
 *.iml
 .idea/
 

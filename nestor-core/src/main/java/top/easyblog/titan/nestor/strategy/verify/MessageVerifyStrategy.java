@@ -1,0 +1,24 @@
+package top.easyblog.titan.nestor.strategy.verify;
+
+import top.easyblog.titan.nestor.context.MessageSendContext;
+import top.easyblog.titan.nestor.processor.MessageProcessorContext;
+
+/**
+ * @author: frank.huang
+ * @date: 2023-02-12 14:22
+ */
+public interface MessageVerifyStrategy {
+    /**
+     * 获取发送策略
+     *
+     * @return
+     */
+    byte getPushType();
+
+    /**
+     * 校验消息合法
+     *
+     * @param context
+     */
+    void verify(MessageProcessorContext context);
+}

@@ -5,15 +5,18 @@ import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+/**
+ * @author frank.huang
+ */
 @EnableWebMvc
 @EnableFeignClients
 @EnableTransactionManagement
-@MapperScans({
-        @MapperScan("top.easyblog.titan.nestor.dao")
-})
+@MapperScan("top.easyblog.titan.nestor.dao")
+@EnableAspectJAutoProxy
 @SpringBootApplication(scanBasePackages = {"top.easyblog.titan.nestor"})
 public class Application {
 
