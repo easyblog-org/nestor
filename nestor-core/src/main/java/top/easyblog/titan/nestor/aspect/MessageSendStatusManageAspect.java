@@ -66,7 +66,7 @@ public class MessageSendStatusManageAspect {
         String strategyName = joinPoint.getClass().getSimpleName();
         Arrays.stream(args).filter(arg -> Objects.nonNull(arg) && arg instanceof MessageSendContext).forEach(arg -> {
             MessageSendContext messageSendContext = (MessageSendContext) arg;
-            log.info("[{}]Send attachment email failed,record_code:{}", strategyName, messageSendContext.getSendRecordCode());
+            log.info("[{}]Send attachment email failed,record_code:{}", strategyName, messageSendContext.getSendRecordId());
 
             MessageSendRecord newMessageSendRecord = new MessageSendRecord();
             newMessageSendRecord.setId(messageSendContext.getSendRecordId());

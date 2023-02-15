@@ -49,7 +49,9 @@ public enum NestorResultCode {
     // 发送消息失败
     SEND_MESSAGE_FAILED,
     // 不合法的消息
-    ILLEGAL_MESSAGE_RECORD;
+    ILLEGAL_MESSAGE_RECORD,
+    // 模板未找到
+    TEMPLATE_NOT_FOUND;
 
 
     public String getCode() {

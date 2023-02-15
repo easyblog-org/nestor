@@ -1,20 +1,26 @@
 package top.easyblog.titan.nestor.processor.chian.impl;
 
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import top.easyblog.titan.nestor.dao.auto.model.MessageSendRecord;
+import top.easyblog.titan.nestor.dao.auto.model.MessageTemplate;
 import top.easyblog.titan.nestor.enums.MessageSendStatus;
 import top.easyblog.titan.nestor.exception.BusinessException;
+import top.easyblog.titan.nestor.parser.TemplateParser;
 import top.easyblog.titan.nestor.processor.MessageProcessorContext;
 import top.easyblog.titan.nestor.processor.chian.MessageProcessChain;
-import top.easyblog.titan.nestor.request.CreateMessageSendRecordRequest;
+import top.easyblog.titan.nestor.request.QueryMessageTemplateRequest;
 import top.easyblog.titan.nestor.response.NestorResultCode;
 import top.easyblog.titan.nestor.service.atomic.AtomicMessageSendRecordService;
-import top.easyblog.titan.nestor.strategy.assemble.MessageAssembleStrategy;
-import top.easyblog.titan.nestor.strategy.assemble.MessageAssembleStrategyContext;
+import top.easyblog.titan.nestor.service.atomic.AtomicMessageTemplateService;
 import top.easyblog.titan.nestor.util.IdGenerator;
+import top.easyblog.titan.nestor.util.JsonUtils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -30,6 +36,12 @@ public class MessageAssembleProcessChain implements MessageProcessChain {
     @Autowired
     private AtomicMessageSendRecordService atomicMessageSendRecordService;
 
+    @Autowired
+    private AtomicMessageTemplateService atomicMessageTemplateService;
+
+    @Autowired
+    private TemplateParser templateParser;
+
     @Override
     public int priority() {
         return 2;
@@ -37,11 +49,16 @@ public class MessageAssembleProcessChain implements MessageProcessChain {
 
     @Override
     public MessageProcessorContext process(MessageProcessorContext context) {
-        MessageAssembleStrategy assembleStrategy = MessageAssembleStrategyContext.getMessageAssembleStrategy(context.getChannel());
-        if (Objects.isNull(assembleStrategy)) {
-            throw new BusinessException(NestorResultCode.ILLEGAL_MESSAGE_SEND_CHANNEL);
+        MessageTemplate messageTemplate = atomicMessageTemplateService.queryByRequest(QueryMessageTemplateRequest.builder()
+                .templateCode(context.getTemplateCode())
+                .build());
+        if (Objects.isNull(messageTemplate)) {
+            throw new BusinessException(NestorResultCode.TEMPLATE_NOT_FOUND);
         }
-        assembleStrategy.assemble(context);
+
+        Map<String, String> variables = JsonUtils.jsonToMap(context.getReplaceValues());
+        String parsedContent = templateParser.parse(messageTemplate.getMsgContent(), variables);
+        context.setContent(parsedContent);
         saveAssembledRecord(context);
         return context;
     }
