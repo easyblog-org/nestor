@@ -16,9 +16,9 @@ public class TemplateParserAutoConfig {
 
 
     @Bean
-    @ConditionalOnClass(value = TemplateParser.class)
-    @ConditionalOnMissingBean(value = TemplateParser.class)
-    public StringTemplateParser templateParser() {
+    @ConditionalOnClass(value = {StringTemplateParser.class})
+    @ConditionalOnMissingBean(value = {TemplateParser.class})
+    public TemplateParser stringTemplateParser() {
         return new StringTemplateParser();
     }
 

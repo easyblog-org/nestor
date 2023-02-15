@@ -1,6 +1,8 @@
 package top.easyblog.titan.nestor.parser.impl;
 
 
+import top.easyblog.titan.nestor.parser.TemplateParser;
+
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +13,7 @@ import java.util.regex.Pattern;
  * @author: frank.huang
  * @date: 2023-02-15 21:21
  */
-public class StringTemplateParser {
+public class StringTemplateParser implements TemplateParser {
     private final String pattern;
 
     public StringTemplateParser() {

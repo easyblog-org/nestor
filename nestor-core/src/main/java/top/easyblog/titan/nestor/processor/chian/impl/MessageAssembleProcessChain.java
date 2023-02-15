@@ -19,6 +19,7 @@ import top.easyblog.titan.nestor.service.atomic.AtomicMessageTemplateService;
 import top.easyblog.titan.nestor.util.IdGenerator;
 import top.easyblog.titan.nestor.util.JsonUtils;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -40,7 +41,7 @@ public class MessageAssembleProcessChain implements MessageProcessChain {
     private AtomicMessageTemplateService atomicMessageTemplateService;
 
     @Autowired
-    private TemplateParser templateParser;
+    private TemplateParser stringTemplateParser;
 
     @Override
     public int priority() {
@@ -57,7 +58,7 @@ public class MessageAssembleProcessChain implements MessageProcessChain {
         }
 
         Map<String, String> variables = JsonUtils.jsonToMap(context.getReplaceValues());
-        String parsedContent = templateParser.parse(messageTemplate.getMsgContent(), variables);
+        String parsedContent = stringTemplateParser.parse(messageTemplate.getMsgContent(), variables);
         context.setContent(parsedContent);
         saveAssembledRecord(context);
         return context;
